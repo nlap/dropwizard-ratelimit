@@ -18,13 +18,10 @@ public class RateLimitFilter implements ContainerRequestFilter {
     @Override
     public void filter(ContainerRequestContext requestContext) throws IOException
     {
-        // check if HTTPS
+        // check if client exceeded rate limit
         if (!requestContext.getSecurityContext().isSecure())
         {
-            // if not, abort the request
-            requestContext.abortWith(Response.status(Response.Status.fromStatusCode(429))
-                    .entity("Too Many Requests")
-                    .build());
+            requestContext.abortWith(Response.status(429).entity("Too Many Requests").build());
         }
     }
 
