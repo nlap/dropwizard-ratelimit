@@ -2,7 +2,7 @@
 
 dropwizard-ratelimit is a [dropwizard](http://dropwizard.io/) bundle that allows [redis](http://redis.io)-backed rate limiting for your resources.
 
-Requires Dropwizard 0.8.0+, for JAX-RS 2.0
+Requires Dropwizard 0.8.0+
 
 # Usage
 First build the project with `mvn clean install` and add the following dependency to your `pom.xml`
@@ -15,11 +15,11 @@ First build the project with `mvn clean install` and add the following dependenc
 
 Now add the bundle:
 
-	private RateLimitBundle<ExampleConfiguration> rateLimitBundle = new RateLimitBundle<ExampleConfiguration>() {
+	private RateLimitBundle<ExampleServiceConfiguration> rateLimitBundle = new RateLimitBundle<ExampleServiceConfiguration>() {
 		@Override
-		public JedisConfiguration getJedisConfiguration(
-				ExampleConfiguration configuration) {
-			return configuration.getJedis();
+		public RateLimitConfiguration getRateLimitConfiguration(
+				ExampleServiceConfiguration configuration) {
+			return configuration.getRateLimit();
 		}
 	};
 	
@@ -31,6 +31,7 @@ Now add the bundle:
 Finally, annotate any resources you want to protect with `@RateLimited`:
 
 	import ca.nlap.dropwizard.ratelimit.RateLimited;
+	...
 
 	@Path("/")
 	public class ExampleResource {
