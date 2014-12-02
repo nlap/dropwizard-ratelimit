@@ -1,0 +1,14 @@
+
+http:
+  port: 8080
+  adminPort: 8081
+  rootPath: /teams/*
+  
+  
+logging:
+  level: INFO
+
+# jedis default configuration copied from redis.clients.jedis.JedisPoolConfig
+jedis:
+  host: localhost
+  port: 6379
