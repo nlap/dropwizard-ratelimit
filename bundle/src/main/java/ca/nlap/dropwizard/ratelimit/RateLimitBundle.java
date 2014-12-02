@@ -17,11 +17,11 @@ public abstract class RateLimitBundle<T extends Configuration> implements Config
 
 	@Override
 	public void run(T configuration, Environment environment) throws Exception {
-		RateLimitConfiguration conf = getJedisConfiguration(configuration);
+		RateLimitConfiguration conf = getRateLimitConfiguration(configuration);
 		jedisPoolConfig = conf.poolConfig;
-		jedisPool = new JedisPool(jedisPoolConfig, conf.getHost(), conf.getPort());
+		jedisPool = new JedisPool(jedisPoolConfig, conf.getRedisHost(), conf.getRedisPort());
 
-		environment.healthChecks().register("redis-pool", new RedisHealthCheck(jedisPool));
+		environment.healthChecks().register("redis", new RedisHealthCheck(jedisPool));
 
 		RateLimitFilter rateLimitFilter = new RateLimitFilter(jedisPool);
 		environment.jersey().register(rateLimitFilter);

@@ -9,13 +9,13 @@ import io.dropwizard.Configuration;
 public class ExampleServiceConfiguration extends Configuration {
 	@NotNull
 	@JsonProperty
-	private RateLimitConfiguration jedis;
+	private RateLimitConfiguration rateLimit;
 
-	public RateLimitConfiguration getJedis() {
-		return jedis;
+	public RateLimitConfiguration getRateLimit() {
+		return rateLimit;
 	}
 
-	public void setJedis(RateLimitConfiguration jedis) {
-		this.jedis = jedis;
+	public void setRateLimit(RateLimitConfiguration rateLimit) {
+		this.rateLimit = rateLimit;
 	}
 }

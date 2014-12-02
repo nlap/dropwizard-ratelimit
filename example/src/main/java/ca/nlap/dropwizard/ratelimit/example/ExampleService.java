@@ -10,9 +10,9 @@ import io.dropwizard.setup.Environment;
 public class ExampleService extends Application<ExampleServiceConfiguration> {
 	private RateLimitBundle<ExampleServiceConfiguration> rateLimitBundle = new RateLimitBundle<ExampleServiceConfiguration>() {
 		@Override
-		public RateLimitConfiguration getJedisConfiguration(
+		public RateLimitConfiguration getRateLimitConfiguration(
 				ExampleServiceConfiguration configuration) {
-			return configuration.getJedis();
+			return configuration.getRateLimit();
 		}
 	};
 
