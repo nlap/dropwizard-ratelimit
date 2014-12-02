@@ -12,3 +12,6 @@
 hs_err_pid*
 *.iml
 .idea
+example/target
+bundle/target
+dependency-reduced-pom.xml
