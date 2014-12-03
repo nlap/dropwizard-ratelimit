@@ -8,4 +8,12 @@
   <artifactId>bundle</artifactId>
   <name>bundle</name>
   <description>a redis-backed rate limiter for dropwizard</description>
+
+  <build>
+    <resources>
+      <resource>
+        <directory>src/main/Resources</directory>
+      </resource>
+    </resources>
+  </build>
 </project>
