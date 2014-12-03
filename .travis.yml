@@ -3,7 +3,7 @@ language: java
 script:
 - mvn verify
 
-after_success: mvn cobertura:cobertura coveralls:cobertura
+after_success: mvn cobertura:cobertura coveralls:report
 
 jdk:
   - oraclejdk7
