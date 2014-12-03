@@ -21,6 +21,12 @@ public abstract class RateLimitBundle<T extends Configuration> implements Config
 	private JedisPoolConfig jedisPoolConfig;
 	private JedisPool jedisPool;
 
+	// to inject mock JedisPool for testing
+	public void run(T configuration, Environment environment, JedisPool jedisPool) throws Exception {
+		this.jedisPool = jedisPool;
+		run(configuration, environment);
+	}
+
 	@Override
 	public void run(T configuration, Environment environment) throws Exception {
 
@@ -39,7 +45,9 @@ public abstract class RateLimitBundle<T extends Configuration> implements Config
 		// load redis config, setup redis connection pool
 		RateLimitConfiguration conf = getRateLimitConfiguration(configuration);
 		jedisPoolConfig = conf.poolConfig;
-		jedisPool = new JedisPool(jedisPoolConfig, conf.getRedisHost(), conf.getRedisPort());
+		if (jedisPool == null) {
+			jedisPool = new JedisPool(jedisPoolConfig, conf.getRedisHost(), conf.getRedisPort());
+		}
 		environment.healthChecks().register("redis", new RedisHealthCheck(jedisPool));
 
 		// load redis lua script into script cache
