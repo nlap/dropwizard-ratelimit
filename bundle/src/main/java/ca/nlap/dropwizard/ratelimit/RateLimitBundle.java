@@ -44,7 +44,7 @@ public abstract class RateLimitBundle<T extends Configuration> implements Config
 
 		// load redis config, setup redis connection pool
 		RateLimitConfiguration conf = getRateLimitConfiguration(configuration);
-		jedisPoolConfig = conf.poolConfig;
+		jedisPoolConfig = conf.getPoolConfig();
 		if (jedisPool == null) {
 			jedisPool = new JedisPool(jedisPoolConfig, conf.getRedisHost(), conf.getRedisPort());
 		}

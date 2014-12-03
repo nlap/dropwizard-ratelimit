@@ -3,6 +3,7 @@ package ca.nlap.dropwizard.ratelimit;
 import com.codahale.metrics.health.HealthCheckRegistry;
 import io.dropwizard.Configuration;
 import io.dropwizard.jersey.setup.JerseyEnvironment;
+import io.dropwizard.lifecycle.Managed;
 import io.dropwizard.lifecycle.setup.LifecycleEnvironment;
 import io.dropwizard.setup.Environment;
 import org.junit.Before;
@@ -66,6 +67,16 @@ public class RateLimitBundleTest {
     public void registersARedisHealthCheck() throws Exception {
         bundle.run(configuration, environment, jedisPool);
         verify(healthChecks).register(eq("redis"), any(RedisHealthCheck.class));
+    }
+
+    @Test
+    public void destroysJedisPoolOnStop() throws Exception {
+        bundle.run(configuration, environment, jedisPool);
+        final ArgumentCaptor<Managed> captor =
+                ArgumentCaptor.forClass(Managed.class);
+        verify(lifecycle).manage(captor.capture());
+        captor.getValue().stop();
+        verify(jedisPool).destroy();
     }
 
     // message digest methods for verifying lua script loading
