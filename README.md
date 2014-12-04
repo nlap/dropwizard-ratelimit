@@ -56,18 +56,17 @@ Configure as per the example conf.yaml. The properties are:
 The module `example` contains an API with a single resource that simply returns 200 OK. This is rate limited to 3 requests per second.
 
 
-Start and configure redis. Run `run-example.sh` to start the service and run the test. Multiple requests will be sent, demonstrating the rate limiting:
+Start and configure redis. Run `run-example.sh` to start the service and `test-example.sh` to run the test. Multiple requests will be sent, demonstrating the rate limiting:
 	
-	200 OK
-	200 OK
-	200 OK
-	429 Too Many Requests
+	Hello
+	Hello
+	Hello
+	Too Many Requests
 	
 # Open Work
 The following is not yet available. Contributions are welcomed.
 
-* df
-* df
+* Per resource configuration
 
 # Contributions
 Adapts code from https://github.com/anastasop/dropwizard-jedis  
