@@ -1,10 +1,10 @@
-***Work in progress***
+##Note: this project is no longer maintained, but pull requests are welcome
 
 [![Build Status](https://travis-ci.org/nlap/dropwizard-ratelimit.svg)](https://travis-ci.org/nlap/dropwizard-ratelimit) [![Coverage Status](https://img.shields.io/coveralls/nlap/dropwizard-ratelimit.svg)](https://coveralls.io/r/nlap/dropwizard-ratelimit)
 
 dropwizard-ratelimit is a [dropwizard](http://dropwizard.io/) bundle that allows [redis](http://redis.io)-backed rate limiting for your resources. It performs [sliding-window rate limiting](http://www.binpress.com/tutorial/introduction-to-rate-limiting-with-redis-part-2/166).
 
-Requires Dropwizard 0.8.0+
+Requires Dropwizard ~0.8.0. Not tested on 1.0.
 
 # Usage
 Add the following dependency to your `pom.xml`
