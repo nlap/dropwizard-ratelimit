@@ -1,4 +1,4 @@
-##Note: this project is no longer maintained, but pull requests are welcome
+## Note: this project is no longer maintained
 
 [![Build Status](https://travis-ci.org/nlap/dropwizard-ratelimit.svg)](https://travis-ci.org/nlap/dropwizard-ratelimit) [![Coverage Status](https://img.shields.io/coveralls/nlap/dropwizard-ratelimit.svg)](https://coveralls.io/r/nlap/dropwizard-ratelimit)
 
